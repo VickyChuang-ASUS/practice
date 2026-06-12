@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SG 4D3N ｜ 高效優雅快閃專案</title>
+    <style>
+        :root {
+            --primary-color: #1a252f;
+            --accent-color: #bfa15f; 
+            --bg-light: #f8f9fa;
+            --text-dark: #2c3e50;
+            --text-muted: #7f8c8d;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2c3e50 100%);
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .meta-card h3 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+            font-weight: normal;
+        }
+
+        .meta-card p {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        .tabs {
+            display: flex;
+            background: white;
+            padding: 0.25rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .tab-btn {
+            flex: 1;
+            text-align: center;
+            padding: 0.75rem 0.5rem;
+            font-weight: bold;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        #tab1:checked ~ .tabs label[for="tab1"],
+        #tab2:checked ~ .tabs label[for="tab2"],
+        #tab3:checked ~ .tabs label[for="tab3"],
+        #tab4:checked ~ .tabs label[for="tab4"] {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .day-panel {
+            display: none;
+        }
+
+        #tab1:checked ~ #day1,
+        #tab2:checked ~ #day2,
+        #tab3:checked ~ #day3,
+        #tab4:checked ~ #day4 {
+            display: block;
+        }
+
+        .timeline-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid #cbd5e1;
+        }
+
+        .timeline-item.highlight {
+            border-left-color: var(--accent-color);
+            background: linear-gradient(to right, #fffdf9, #white);
+        }
+
+        .time-tag {
+            display: inline-block;
+            background: #e2e8f0;
+            color: var(--primary-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item.highlight .time-tag {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .item-desc {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .map-indicator {
+            display: flex;
+            align-items: center;
+            background: #f1f5f9;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: #475569;
+            margin-top: 0.5rem;
+        }
+        .map-indicator span {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .map-btn {
+            display: block;
+            text-align: center;
+            background: #10b981; /* 換成優雅的森林綠 */
+            color: white;
+            text-decoration: none;
+            padding: 0.9rem;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.94rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(16,185,129,0.2);
+            transition: background 0.2s;
+        }
+        .map-btn:hover { background: #059669; }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+        .badge-grab { background: #e6f4ea; color: #137333; }
+        .badge-walk { background: #e8f0fe; color: #1a73e8; }
+        .badge-mrt { background: #fce8e6; color: #c5221f; }
+
+        .strategy-box {
+            background: #f1f5f9;
+            border: 1px dashed var(--text-muted);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .strategy-box h4 {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .strategy-box ul {
+            list-style-type: none;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+        }
+
+        .strategy-box li {
+            margin-bottom: 0.25rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .strategy-box li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SINGAPORE FLASH</h1>
+        <p>高效優雅 · 全冷氣防線 · 原生地圖導航版</p>
+    </header>
+
+    <div class="container">
+        <input type="radio" id="tab1" name="day-tabs" checked>
+        <input type="radio" id="tab2" name="day-tabs">
+        <input type="radio" id="tab3" name="day-tabs">
+        <input type="radio" id="tab4" name="day-tabs">
+
+        <div class="meta-grid">
+            <div class="meta-card">
+                <h3>住宿大本營</h3>
+                <p>Park Regis 克拉碼頭</p>
+            </div>
+            <div class="meta-card">
+                <h3>出發開局</h3>
+                <p>05:30 機捷直達車</p>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <label for="tab1" class="tab-btn">DAY 1</label>
+            <label for="tab2" class="tab-btn">DAY 2</label>
+            <label for="tab3" class="tab-btn">DAY 3</label>
+            <label for="tab4" class="tab-btn">DAY 4</label>
+        </div>
+
+        <div id="day1" class="day-panel">
+            <div class="timeline-item">
+                <div class="time-tag">13:30 - 15:00</div>
+                <div class="item-title">樟宜機場 ➔ Park Regis 飯店<span class="badge badge-grab">Grab</span></div>
+                <div class="item-desc">飛機降落，搭上 Grab 直奔市中心的克拉碼頭，車程約 25 分鐘。</div>
+                <div class="map-indicator">📍 <span>移動範圍：</span> 東部樟宜機場 ➔ 中南部克拉碼頭基地</div>
+            </div>
+            <div class="timeline-item highlight">
+                <div class="time-tag">15:15 - 17:00</div>
+                <div class="item-title">第一輪主場美食盲盒<span class="badge badge-walk">步行 3m</span></div>
+                <div class="item-desc">從飯店過 Merchant Rd 橋即達新加坡河畔。直接现场查看珍寶（Riverside店）或隔壁的松發肉骨茶總店。</div>
+                <div class="map-indicator">📍 <span>移動範圍：</span> 飯店正對面水岸，直徑 200 公尺內</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">17:30 - 19:00</div>
+                <div class="item-title">魚尾獅公園（日落點燈）<span class="badge badge-walk">河畔散步</span></div>
+                <div class="item-desc">沿著駁船碼頭（Boat Quay）的河畔行人步道，一路吹著晚風散步 15 分鐘直達海濱。</div>
+                <div class="map-indicator">📍 <span>移動範圍：</span> 順著新加坡河流向，往濱海灣口平移 1.2 公里</div>
+            </div>
+            <div class="timeline-item highlight">
+                <div class="time-tag">19:15 之後</div>
+                <div class="item-title">二次盲盒宵夜 ➔ 秒回房躺平<span class="badge badge-walk">步行 1m</span></div>
+                <div class="item-desc">看完點燈，原路沿河畔散步回克拉碼頭解鎖宵夜。吃飽一轉身直接進飯店。</div>
+                <div class="map-indicator">📍 <span>總結：</span> 今日地面戰鬥範圍鎖定在「新加坡河畔一條線」，無拉車損耗</div>
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&origin=Changi+Airport+Singapore+(SIN),+Singapore&destination=Park+Regis+Singapore&waypoints=Jumbo+Seafood+Riverside|Merlion+Park|Song+Fa+Bak+Kut+Teh+11+New+Bridge+Rd&travelmode=driving" target="_blank" class="map-btn">🗺️ 一鍵開啟 DAY 1 官方導航路線</a>
+        </div>
+
+        <div id="day2" class="day-panel">
+            <div class="timeline-item highlight">
+                <div class="time-tag">10:45 - 11:30</div>
+                <div class="item-title">天天海南雞飯 (麥士威)<span class="badge badge-mrt">地鐵 2 站</span></div>
+                <div class="item-desc">克拉碼頭站搭紫線 1 站到歐南園，轉棕線 1 站到麥士威站。出站直接進冷氣熟食中心。</div>
+                <div class="map-indicator">📍 <span>移動範圍：</span> 自飯店往南平移 1.5 公里（牛車水邊緣）</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">11:45 - 13:45</div>
+                <div class="item-title">甘榜格南（哈芝巷 & 香水店）<span class="badge badge-grab">Grab/公車</span></div>
+                <div class="item-desc">熟食中心門口搭 80 號公車 12 分鐘直達武吉士（Bugis）旁的阿拉街。</div>
+                <div class="map-indicator">📍 <span>移動範圍：</span> 從南部大跨步往東北方的武吉士區移動（約 3.5 公里）</div>
+            </div>
+            <div class="timeline-item highlight">
+                <div class="time-tag">14:15 - 19:45</div>
+                <div class="item-title">濱海灣花園雙溫室（冷氣避暑）<span class="badge badge-grab">Grab 6m</span></div>
+                <div class="item-desc">從哈芝巷口直接叫 Grab 跳過熱浪，6 分鐘閃進冷氣溫室。晚上看 19:45 超級樹燈光秀。</div>
+                <div class="map-indicator">📍 <span>移動範圍：</span> 從武吉士南下至東南填海區的濱海灣花園（約 2.8 公里）</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">20:30 - 22:30</div>
+                <div class="item-title">Violet Oon 奢華娘惹晚宴<span class="badge badge-grab">Grab 5m</span></div>
+                <div class="item-desc">散步離開超級樹，Grab 直奔國家美術館。完食後 Grab 5 分鐘送回克拉碼頭飯店。</div>
+                <div class="map-indicator">📍 <span>總結：</span> 今日是包圍濱海灣的大型環狀移動，午後至夜間全靠 Grab 無縫對接</div>
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&origin=Park+Regis+Singapore&destination=Park+Regis+Singapore&waypoints=Tian+Tian+Hainanese+Chicken+Rice|Haji+Lane|Gardens+by+the+Bay|National+Kitchen+by+Violet+Oon&travelmode=driving" target="_blank" class="map-btn">🗺️ 一鍵開啟 DAY 2 官方導航路線</a>
+        </div>
+
+        <div id="day3" class="day-panel">
+            <div class="timeline-item highlight">
+                <div class="time-tag">09:00 - 10:30</div>
+                <div class="item-title">對面商場亞坤椰咖吐司<span class="badge badge-walk">步行 2m</span></div>
+                <div class="item-desc">走飯店大門的天橋跨越馬路，直接進對面 Clarke Quay Central 商場 B1 吹冷氣爽吃。</div>
+                <div class="map-indicator">📍 <span>移動範圍：</span> 飯店正對面商場</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">11:00 - 11:30</div>
+                <div class="item-title">萊佛士酒店古蹟拱廊<span class="badge badge-walk">公車 7m</span></div>
+                <div class="item-desc">商場門口搭 190 號公車，4 站直達 City Hall 核心古蹟區。</div>
+                <div class="map-indicator">📍 <span>移動範圍：</span> 往正北方跨過新加坡河，平移 1.2 公里至市政區</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">11:45 - 13:30</div>
+                <div class="item-title">Samy's Curry（登布西山）<span class="badge badge-grab">Grab 10m</span></div>
+                <div class="item-desc">古蹟巡禮完，直接叫 Grab 直奔隱密翠綠的舊英國軍營山丘。</div>
+                <div class="map-indicator">📍 <span>移動範圍：</span> 從市中心一路向西大跨步平移 5 公里至富人綠化區</div>
+            </div>
+            <div class="timeline-item highlight">
+                <div class="time-tag">13:45 - 17:45</div>
+                <div class="item-title">烏節路全冷氣商圈（徹底留白）<span class="badge badge-grab">Grab 6m</span></div>
+                <div class="item-desc">從登布西山滑下山，直接進義安城高島屋。走地下冷氣街漫步至翡翠山老街。無時間壓力。</div>
+                <div class="map-indicator">📍 <span>移動範圍：</span> 登布西山向東折返 2.5 公里，鎖定烏節路帶狀商圈</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">18:00 - 20:00</div>
+                <div class="item-title">新烏敏海鮮（讚美廣場店）<span class="badge badge-grab">Grab/公車</span></div>
+                <div class="item-desc">烏節路 ION 搭公車或捷運直接拉回 City Hall 讚美廣場。完食後搭公車 5 分鐘回飯店。</div>
+                <div class="map-indicator">📍 <span>總結：</span> 今日是「一路向西再折返」的橫向大移動，成功突襲登布西山與烏節路</div>
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&origin=Park+Regis+Singapore&destination=Park+Regis+Singapore&waypoints=Raffles+Hotel+Singapore|Samy's+Curry|Takashimaya+Shopping+Centre|New+Ubin+Seafood+CHIJMES&travelmode=driving" target="_blank" class="google-map-btn map-btn">🗺️ 一鍵開啟 DAY 3 官方導航路線</a>
+        </div>
+
+        <div id="day4" class="day-panel">
+            <div class="timeline-item">
+                <div class="time-tag">11:00 - 12:00</div>
+                <div class="item-title">飯店退房 ➔ 星耀樟宜<span class="badge badge-grab">Grab 25m</span></div>
+                <div class="item-desc">悠閒睡飽退房，直接在大廳上 Grab，冷氣吹飽直達樟宜機場。</div>
+                <div class="map-indicator">📍 <span>移動範圍：</span> 市中心克拉碼頭 ➔ 橫跨整座島嶼至最東端機場</div>
+            </div>
+            <div class="timeline-item highlight">
+                <div class="time-tag">12:00 - 15:00</div>
+                <div class="item-title">星耀樟宜 Jewel 盲盒放空 ➔ 登機</div>
+                <div class="item-desc">託運完行李，直接在 Jewel 巨型瀑布冷氣大廳內放空、吃 B2 美食、買伴手禮。14:45 準時登機返台。</div>
+                <div class="map-indicator">📍 <span>總結：</span> 今日戰力全部保留在樟宜機場室內，完全與地表毒辣陽光絕緣</div>
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&origin=Park+Regis+Singapore&destination=Jewel+Changi+Airport&travelmode=driving" target="_blank" class="map-btn">🗺️ 一鍵開啟 DAY 4 機場導航</a>
+        </div>
+
+        <div class="strategy-box">
+            <h4>💡 30天前線上搶位戰略（台灣時間跨日搶）</h4>
+            <ul>
+                <li><strong>7月21日：</strong> 搶 8/21 (D2) 20:30 National Kitchen by Violet Oon</li>
+                <li><strong>7月23日：</strong> 搶 8/22 (D3) 18:00 新烏敏海鮮（讚美廣場店）</li>
+                <li>* 第一天下午餐完全留白免預約，保留開局最高鬆弛度。</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 蔡氏夫妻新加坡優雅快閃專案 ｜ 祝旅途愉快</p>
+    </footer>
+</body>
+</html>
