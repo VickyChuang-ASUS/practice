@@ -36,4 +36,67 @@
 1. **全域識別設定**（每台新電腦只需做一次）：
    ```powershell
    git config --global user.name "Your Name"
-   git config --global user.email "your_email@example.com"
+   git config --global user.email "your_email@example.com"```
+   
+2. **本地初始化**：
+   ```powershell
+   cd ~\Desktop
+   mkdir git-practice
+   cd git-practice
+   git init
+   ```
+3. **身分驗證登入**：
+   第一次執行 `git push -u origin main` 時，系統會彈出 **Git Credential Manager** 視窗，點擊 **"Sign in with your browser"** 並在瀏覽器按 **Authorize** 授權，憑證就會安全存入 Windows 憑證管理員，之後免輸入密碼。
+
+---
+
+## 🌐 一鍵入魂：GitHub Pages 靜態網站發布 SOP
+
+### 1. 檔名的神聖慣例：`index.html`
+網頁伺服器遵循**「慣例優於設定 (Convention over Configuration)」**。網址在沒有指定具體檔案時，預設會自動開啟 `index.html`。如果使用 `singapore.html`，發布後的網址尾巴就必須手動補上 `/singapore.html`。**建議首頁一律用小寫的 `index.html`**。
+
+### 2. 後台發布流程
+1. 將程式碼 `git commit` 並且 `git push` 到 GitHub。
+2. 進入該 GitHub 專案網頁，點擊右上方 **Settings** (齒輪圖示)。
+3. 在左側選單點擊 **Pages**。
+4. 在 **Build and deployment -> Branch** 下，將 `None` 改選為 **`main`** (或 `master`) 分支，並點擊 **Save**。
+5. 等待約 60 秒，重新整理該頁面，頂端即會顯示專屬網站網址。
+
+---
+
+## 🪤 新手村終極脫困密技
+
+### 陷阱一：直接執行 `git commit` 忘記加訊息，被抓進 Vim 編輯器？
+在充滿波浪符號 `~` 的黑暗畫面中，請冷靜依序按下：
+1. 連續按鍵盤左上角的 `Esc` 鍵數次（確保退出編輯模式）。
+2. **想瘋狂逃走（不儲存）**：盲打輸入 `:q!`，再按 `Enter`。
+3. **想直接存檔離開**：盲打輸入 `:wq`，再按 `Enter`。
+
+### 陷阱二：程式碼 push 上去後反悔了，用 Reset 還是 Revert？
+* 核心鐵律：**已經 Push 上雲端的紀錄，一律用 `git revert`！**
+* `git reset`（時光倒流）：直接抹殺過去，會導致本地歷史比雲端舊，下次 push 會被雲端無情拒絕。
+* `git revert`（往前推進的反向操作）：保留過去，建立一個「全新」的 commit 來抵銷上一次的修改（例如把改掉的檔名再改回來）。歷史線完美，推上雲端絕對不打架。
+  ```powershell
+  git log --oneline     # 查出想反悔的那筆 Hash（如 a1b2c3d）
+  git revert a1b2c3d    # 進入 Vim 後輸入 :wq 儲存離開
+  git push              # 順暢推上雲端！
+  ```
+
+---
+
+## 💻 PowerShell 常用實戰指令速查
+
+```powershell
+# 建立 UTF-8 編碼檔案 (PowerShell 專用)
+New-Item -Path . -Name "index.html" -ItemType "file" -Value "Hello Git"
+
+# 檢查目前檔案狀態
+git status
+
+# 搬上暫存舞台 / 提交
+git add .
+git commit -m "Your commit message"
+
+# 查看歷史簡短紀錄
+git log --oneline
+```
