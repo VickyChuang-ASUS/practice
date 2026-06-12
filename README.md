@@ -28,6 +28,7 @@
 | **標記準備送出** | *(無)* | `git add` | **【Git 獨有暫存區】**把修改過的檔案搬上準備打包的舞台（變綠色）。 |
 | **提交變更** | `svn commit` | `git commit` | **僅**提交到你電腦本地的 `.git` 資料庫，完全不需網路。 |
 | **推上雲端** | *(自動包含)* | `git push` | 正式把本地大腦的歷史紀錄，沿著電話線推上 GitHub。 |
+| **從雲端下載** | `svn checkout` | `git clone` | 正式把本地大腦的歷史紀錄，沿著電話線推上 GitHub。 |
 
 ---
 
@@ -81,7 +82,7 @@
   git revert a1b2c3d    # 進入 Vim 後輸入 :wq 儲存離開
   git push              # 順暢推上雲端！
   ```
-
+  
 ---
 
 ## 💻 PowerShell 常用實戰指令速查
@@ -98,5 +99,7 @@ git add .
 git commit -m "Your commit message"
 
 # 查看歷史簡短紀錄
-git log --oneline
+
+# 下載某個Repository
+git clone https://github.com/你的帳號/Repository名稱.git
 ```
