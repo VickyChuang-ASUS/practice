@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git & GitHub 終極實戰特訓筆記</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #c9d1d9;
+            --text-main: #f0f6fc;
+            --accent-color: #58a6ff;
+            --success-color: #238636;
+            --warning-color: #d29922;
+            --danger-color: #f85149;
+            --purple-color: #bc8cff;
+            --border-color: #30363d;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2.5rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            color: var(--text-main);
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+
+        header p {
+            color: var(--accent-color);
+            margin: 0.7rem 0 0 0;
+            font-size: 1.2rem;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            color: var(--text-main);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.6rem;
+            margin-top: 0;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            margin: 0.8rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #21262d;
+            color: var(--text-main);
+        }
+
+        code {
+            background-color: rgba(110, 118, 129, 0.4);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+            font-size: 85%;
+            color: #ff7b72;
+        }
+
+        pre {
+            background-color: #010409;
+            padding: 1.2rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            margin: 1rem 0;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: var(--text-color);
+            font-size: 90%;
+        }
+
+        /* 呼應重點的區塊樣式 */
+        .box {
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 6px;
+        }
+        .highlight-box { border-left: 4px solid var(--accent-color); background-color: rgba(88, 166, 255, 0.07); }
+        .warning-box { border-left: 4px solid var(--warning-color); background-color: rgba(210, 153, 34, 0.07); }
+        .success-box { border-left: 4px solid var(--success-color); background-color: rgba(35, 134, 54, 0.07); }
+        .purple-box { border-left: 4px solid var(--purple-color); background-color: rgba(188, 140, 255, 0.07); }
+
+        .steps-list {
+            padding-left: 1.5rem;
+        }
+        .steps-list li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 3rem;
+            color: #8b949e;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Git & GitHub 終極實戰特訓筆記</h1>
+        <p>⚔️ 從 0 開始的對位轉化：SVN 舊思維解構 🛠️</p>
+    </header>
+
+    <div class="container">
+
+        <section>
+            <h2>🔗 核心本質：本地資料夾與 GitHub 的空間幾何關係</h2>
+            <p>許多 SVN 開發者最常卡關的，就是分不清楚「我電腦裡的資料夾」跟「GitHub 網站」到底是怎麼連線的。請看以下的核心解構：</p>
+            
+            
+
+            <h3>1. 本地資料夾：獨立運作的「密封世界」</h3>
+            <p>當你在電腦某資料夾執行 <code>git init</code> 後，該資料夾就分裂成兩個次元：</p>
+            <ul>
+                <li><strong>看得見的次元（工作區）：</strong>你平常肉眼看到、用編輯器修改的程式碼檔案。</li>
+                <li><strong>看不見的次元（本地資料庫）：</strong>隱藏的 <code>.git</code> 資料夾。它是一個完整的資料庫，儲存了你過去每一次 commit 的「全景快照歷史」。</li>
+            </ul>
+            <p class="box highlight-box"><strong>💡 關鍵哲學：</strong>這個本地資料夾此時是 <strong>100% 獨立</strong>的。不論世界上有沒有 GitHub、你有沒有網路，它都具備完整的版本追蹤能力。它不需要附屬於任何伺服器。</p>
+
+            <h3>2. GitHub：雲端的「多功能鏡像庫」</h3>
+            <p>GitHub 本質上只是**「另一台長年不關機、放在雲端的電腦」**。它上面也跑著 Git。你在 GitHub 上建立的 Repository，其實就是雲端伺服器上的一個資料夾。</p>
+
+            <h3>3. 那兩者是怎麼產生關係的？（綁定原理）</h3>
+            <p>當你在本地執行這行關鍵指令時：</p>
+            <pre><code>git remote add origin https://github.com/YourName/repo.git</code></pre>
+            <p>你是在本地的 <code>.git/config</code> 設定檔裡拉了一條隱形的電話線。你告訴本地大腦：<strong>「聽著，以後如果我呼叫 <code>origin</code> 這個代號，指的就是雲端這串 GitHub 的網址！」</strong></p>
+            
+            <p>* <code>git push</code>：就是把你本地 <code>.git</code> 基地裡的精采歷史照片，打包複製一份「推」上這條線，同步到雲端的資料夾。<br>
+            * <code>git pull</code>：就是把雲端資料夾裡別人新增的照片，「拉」回你本地的 <code>.git</code> 基地。 </p>
+        </section>
+
+        <section>
+            <h2>🛠️ 從零開始：搭建環境並連上 GitHub 的全步驟</h2>
+            <p>如果你在一台完全乾淨、剛灌好作業系統的 Windows 電腦前，請依照以下鋼鐵流程從 0 做到通：</p>
+            
+            <div class="box purple-box">
+                <ol class="steps-list">
+                    <li>
+                        <strong>第一步：註冊 GitHub 帳號</strong>
+                        <br>至 <a href="https://github.com" target="_blank" style="color: var(--accent-color);">github.com</a> 註冊，並記好你的 <code>Username</code> 和 <code>Email</code>。
+                    </li>
+                    <li>
+                        <strong>第二步：安裝 Git 核心主程式</strong>
+                        <br>前往官方下載安裝包並安裝。安裝過程中，預設會勾選 <strong>Git Credential Manager (GCM)</strong>，這一定要裝！它是負責在幕後幫你處理 Windows 與 GitHub 密碼驗證的神器。
+                    </li>
+                    <li>
+                        <strong>第三步：啟動 PowerShell 建立全域識別</strong>
+                        <br>打開 PowerShell，輸入以下兩行（讓你的電腦每一次 commit 都能自動蓋上你的店章）：
+                        <pre><code>git config --global user.name "你的英文名字"
+git config --global user.email "你註冊GitHub的信箱"</code></pre>
+                    </li>
+                    <li>
+                        <strong>第四步：本地平地起高樓</strong>
+                        <br>移動到安全的本地路徑（如桌面），建立資料夾並初始化：
+                        <pre><code>cd ~\Desktop
+mkdir my-project
+cd my-project
+git init</code></pre>
+                    </li>
+                    <li>
+                        <strong>第五步：第一次的網路身分驗證（最重要的一刻）</strong>
+                        <br>當你第一次執行 <code>git push -u origin main</code> 時，作業系統會偵測到你從未連線過此 GitHub 帳號，此時會彈出一個**「Git Credential Manager」的安全視窗**。
+                        <br>👉 <strong>標準解法：</strong>直接點擊 <strong>"Sign in with your browser"</strong>。系統會導向瀏覽器，只要點擊綠色的 <strong>"Authorize"</strong> 授權按鈕，驗證即刻完成！GCM 會把一組加密憑證（Token）安全地存入 Windows 的「憑證管理員」中。從此以後，你在這台電腦 push 再也不需要輸入密碼。
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section>
+            <h2>🌐 一鍵入魂：GitHub Pages 靜態網站發布機制</h2>
+            <p>想要把你寫好的 HTML 網頁變成全天下都能瀏覽的網站，這是最快的免費託管 SOP：</p>
+
+            
+
+            <h3>1. 檔名的神聖慣例：<code>index.html</code></h3>
+            <p>網頁伺服器遵循**「慣例優於設定」**。網址在沒有指定具體檔案時，預設只會自動開啟 <code>index.html</code>。
+            如果你任性地使用 <code>singapore.html</code>，發布後的網址尾巴就必須強迫加上 <code>/singapore.html</code> 才能看見。為了網址的美觀與通用，建議首頁一律用小寫的 <code>index.html</code>。</p>
+
+            <h3>2. 網頁後台發布流程步驟：</h3>
+            <ol class="steps-list">
+                <li>將你的程式碼 <code>git commit</code> 並且 <code>git push</code> 到 GitHub 上。</li>
+                <li>在該 GitHub 專案網頁正上方，點擊最右側的 <strong>Settings (設定/齒輪)</strong>。</li>
+                <li>在左側側邊欄的選單中，下滑找到 <strong>Pages</strong> 標籤並點擊。</li>
+                <li>在畫布中央的 <strong>Build and deployment -> Branch</strong> 區域下，將原本的 <code>None</code> 下拉選單改選為 <strong><code>main</code></strong> 分支（或 <code>master</code>）。</li>
+                <li>點擊旁邊的 <strong>Save (儲存)</strong>。</li>
+                <li><strong>等待約 60 秒：</strong> GitHub 背景會自動觸發 GitHub Actions 幫你進行雲端編譯與部署。</li>
+                <li>重新整理該頁面，頂端會噴出一個漂亮的綠色區塊，顯示：<br><code>Your site is live at https://你的帳號.github.io/專案名稱/</code></li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>🧠 思維模型對照：SVN 集中式 vs. Git 分散式</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>動作</th>
+                        <th>SVN 指令</th>
+                        <th>Git 指令</th>
+                        <th>核心差異與內部原理說明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>同步最新進度</strong></td>
+                        <td><code>svn update</code></td>
+                        <td><code>git pull</code></td>
+                        <td>把雲端別人寫好的新快照拉回你電腦並融合。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>標記準備送出</strong></td>
+                        <td><em>(無)</em></td>
+                        <td><code>git add</code></td>
+                        <td><strong>【Git 獨有暫存區】</strong>把修改過的檔案搬上準備打包的舞台。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>提交變更</strong></td>
+                        <td><code>svn commit</code></td>
+                        <td><code>git commit</code></td>
+                        <td><strong>僅</strong>提交到你電腦本地的 <code>.git</code> 資料庫。完全不需網路。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>推上雲端</strong></td>
+                        <td><em>(自動包含)</em></td>
+                        <td><code>git push</code></td>
+                        <td>這步才會正式把本地大腦的歷史紀錄，沿著電話線推上 GitHub。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>🪤 新手村終極脫困密技</h2>
+            
+            <h3>陷阱一：直接執行 <code>git commit</code> 沒加訊息，被抓進 Vim 編輯器？</h3>
+            <div class="warning-box">
+                <p>別慌！這是所有 Git 新手的成人禮。在充滿波浪符號 <code>~</code> 的黑暗畫面中，請冷靜依序按下：</p>
+                <ol>
+                    <li>連續猛按鍵盤左上角的 <code>Esc</code> 鍵數次（確保退出編輯模式，進入天神命令模式）。</li>
+                    <li>直接在鍵盤盲打輸入：<code>:q!</code>（冒號、q、驚嘆號），再按 <code>Enter</code> 即可<strong>不儲存瘋狂逃走</strong>。</li>
+                    <li>若想直接輸入訊息並儲存離開：盲打輸入 <code>:wq</code>（寫入並離開），再按 <code>Enter</code>。</li>
+                </ol>
+            </div>
+
+            <h3>陷阱二：程式碼 push 上去後反悔了，用 Reset 還是 Revert？</h3>
+            <div class="success-box">
+                <p><strong>教練鐵律：已經 Push 上雲端的紀錄，一律用 <code>git revert</code>！</strong></p>
+                <ul>
+                    <li><code>git reset</code>（時光倒流）：直接抹殺過去。如果歷史已經上了 GitHub，這招會導致你的本地歷史比雲端還舊，下次 push 會被雲端無情拒絕。</li>
+                    <li><code>git revert</code>（創造未來的反向操作）：它保留過去。它會貼心地建立一個「全新、往前推進的 commit」，裡面的內容剛好是把你想反悔的那筆 commit 「反向操作」回來（例如把改掉的檔名再改回來）。歷史線非常完美，推上雲端絕對不打架。</li>
+                </ul>
+                <pre><code>git log --oneline     <span style="color: #8b949e;"># 查出想反悔的那筆 Hash（如 a1b2c3d）</span>
+git revert a1b2c3d    <span style="color: #8b949e;"># 進入 Vim 輕鬆打 :wq 離開</span>
+git push              <span style="color: #8b949e;"># 順暢推上雲端，大功告成！</span></code></pre>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="footer">
+        🚀 Continuous Learning • Software Engineer Specialized Git Master Plan • 2026
+    </div>
+
+</body>
+</html>
