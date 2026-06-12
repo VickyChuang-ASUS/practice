@@ -99,7 +99,8 @@ git add .
 git commit -m "Your commit message"
 
 # 查看歷史簡短紀錄
+git log --oneline
 
-# 下載某個Repository
+# 下載某個git
 git clone https://github.com/你的帳號/Repository名稱.git
 ```
