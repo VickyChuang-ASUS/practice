@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SG 4D3N ｜ 高效優雅快閃專案</title>
+    <title>SG 4D3N ｜ 南洋慢遊專案</title>
     <style>
         :root {
-            --primary-color: #1a252f;
-            --accent-color: #bfa15f; 
-            --bg-light: #f8f9fa;
+            --primary-color: #1a3038; /* 經典南洋殖民風深綠 */
+            --accent-color: #cda851; /* 輕奢金 */
+            --bg-light: #f6f8f9;
             --text-dark: #2c3e50;
             --text-muted: #7f8c8d;
             --border-color: #e2e8f0;
@@ -29,7 +29,7 @@
         }
 
         header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2c3e50 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0d1b21 100%);
             color: white;
             padding: 2.5rem 1rem;
             text-align: center;
@@ -83,6 +83,7 @@
             color: var(--primary-color);
         }
 
+        /* Pure CSS Tab Controller (iCloud / LINE 預覽完美支援) */
         input[type="radio"] {
             display: none;
         }
@@ -127,6 +128,7 @@
             display: block;
         }
 
+        /* 行程卡片樣式 */
         .timeline-item {
             background: white;
             border-radius: 8px;
@@ -138,7 +140,7 @@
 
         .timeline-item.highlight {
             border-left-color: var(--accent-color);
-            background: linear-gradient(to right, #fffdf9, #white);
+            background: linear-gradient(to right, #fffef9, #ffffff);
         }
 
         .time-tag {
@@ -181,15 +183,16 @@
             margin-top: 0.5rem;
         }
         .map-indicator span {
-            color: var(--accent-color);
+            color: #bfa15f;
             font-weight: bold;
             margin-right: 0.5rem;
         }
 
+        /* 綠色高質感導航按鈕 */
         .map-btn {
             display: block;
             text-align: center;
-            background: #10b981; /* 換成優雅的森林綠 */
+            background: #2b5c56;
             color: white;
             text-decoration: none;
             padding: 0.9rem;
@@ -197,11 +200,12 @@
             font-weight: bold;
             font-size: 0.94rem;
             margin: 1.5rem 0;
-            box-shadow: 0 4px 12px rgba(16,185,129,0.2);
+            box-shadow: 0 4px 12px rgba(43,92,86,0.2);
             transition: background 0.2s;
         }
-        .map-btn:hover { background: #059669; }
+        .map-btn:hover { background: #1a3a36; }
 
+        /* 標籤分類 */
         .badge {
             display: inline-block;
             font-size: 0.75rem;
@@ -214,40 +218,6 @@
         .badge-walk { background: #e8f0fe; color: #1a73e8; }
         .badge-mrt { background: #fce8e6; color: #c5221f; }
 
-        .strategy-box {
-            background: #f1f5f9;
-            border: 1px dashed var(--text-muted);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .strategy-box h4 {
-            font-size: 0.9rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .strategy-box ul {
-            list-style-type: none;
-            font-size: 0.85rem;
-            color: var(--text-dark);
-        }
-
-        .strategy-box li {
-            margin-bottom: 0.25rem;
-            position: relative;
-            padding-left: 1rem;
-        }
-
-        .strategy-box li::before {
-            content: "•";
-            color: var(--accent-color);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
         footer {
             text-align: center;
             padding: 2rem 1rem;
@@ -259,8 +229,8 @@
 <body>
 
     <header>
-        <h1>SINGAPORE FLASH</h1>
-        <p>高效優雅 · 全冷氣防線 · 原生地圖導航版</p>
+        <h1>SINGAPORE SMART TRANSIT</h1>
+        <p>30分鐘交通絕對防線 · 完美對齊時間線專案</p>
     </header>
 
     <div class="container">
@@ -271,12 +241,12 @@
 
         <div class="meta-grid">
             <div class="meta-card">
-                <h3>住宿大本營</h3>
-                <p>Park Regis 克拉碼頭</p>
+                <h3>大眾運輸防線</h3>
+                <p>車程 &lt; 30 分鐘一律搭乘</p>
             </div>
             <div class="meta-card">
-                <h3>出發開局</h3>
-                <p>05:30 機捷直達車</p>
+                <h3>住宿大本營</h3>
+                <p>Park Regis 克拉碼頭</p>
             </div>
         </div>
 
@@ -289,122 +259,127 @@
 
         <div id="day1" class="day-panel">
             <div class="timeline-item">
-                <div class="time-tag">13:30 - 15:00</div>
-                <div class="item-title">樟宜機場 ➔ Park Regis 飯店<span class="badge badge-grab">Grab</span></div>
-                <div class="item-desc">飛機降落，搭上 Grab 直奔市中心的克拉碼頭，車程約 25 分鐘。</div>
-                <div class="map-indicator">📍 <span>移動範圍：</span> 東部樟宜機場 ➔ 中南部克拉碼頭基地</div>
-            </div>
-            <div class="timeline-item highlight">
-                <div class="time-tag">15:15 - 17:00</div>
-                <div class="item-title">第一輪主場美食盲盒<span class="badge badge-walk">步行 3m</span></div>
-                <div class="item-desc">從飯店過 Merchant Rd 橋即達新加坡河畔。直接现场查看珍寶（Riverside店）或隔壁的松發肉骨茶總店。</div>
-                <div class="map-indicator">📍 <span>移動範圍：</span> 飯店正對面水岸，直徑 200 公尺內</div>
+                <div class="time-tag">12:40</div>
+                <div class="item-title">降落星國 ➔ 機場通關</div>
+                <div class="item-desc">星宇航空順利降落樟宜機場第一航廈 (T1)。預留 50 分鐘迅速通關、提領大行李箱。</div>
             </div>
             <div class="timeline-item">
-                <div class="time-tag">17:30 - 19:00</div>
-                <div class="item-title">魚尾獅公園（日落點燈）<span class="badge badge-walk">河畔散步</span></div>
-                <div class="item-desc">沿著駁船碼頭（Boat Quay）的河畔行人步道，一路吹著晚風散步 15 分鐘直達海濱。</div>
-                <div class="map-indicator">📍 <span>移動範圍：</span> 順著新加坡河流向，往濱海灣口平移 1.2 公里</div>
+                <div class="time-tag">13:30 - 14:00</div>
+                <div class="item-title">樟宜機場 ➔ Park Regis 飯店基地<span class="badge badge-grab">Grab 25m</span></div>
+                <div class="item-desc"><strong>【大眾運輸破防改搭 Grab】</strong>此段若搭大眾運輸需 52 分鐘，已超越 30 分鐘限制。果斷由 Grab 接駁，25 分鐘直達克拉碼頭飯店拋下行李。</div>
             </div>
             <div class="timeline-item highlight">
-                <div class="time-tag">19:15 之後</div>
-                <div class="item-title">二次盲盒宵夜 ➔ 秒回房躺平<span class="badge badge-walk">步行 1m</span></div>
-                <div class="item-desc">看完點燈，原路沿河畔散步回克拉碼頭解鎖宵夜。吃飽一轉身直接進飯店。</div>
-                <div class="map-indicator">📍 <span>總結：</span> 今日地面戰鬥範圍鎖定在「新加坡河畔一條線」，無拉車損耗</div>
+                <div class="time-tag">14:15 - 16:30</div>
+                <div class="item-title">克拉碼頭下午餐（主場美食盲盒）<span class="badge badge-walk">步行 3m</span></div>
+                <div class="item-desc">過橋即達水岸。利用超級離峰時間，看心情直接入座「珍寶海鮮」大啖螃蟹，或一轉身爽吃「松發肉骨茶總店」，享受免排隊開局。</div>
             </div>
-            <a href="https://www.google.com/maps/dir/?api=1&origin=Changi+Airport+Singapore+(SIN),+Singapore&destination=Park+Regis+Singapore&waypoints=Jumbo+Seafood+Riverside|Merlion+Park|Song+Fa+Bak+Kut+Teh+11+New+Bridge+Rd&travelmode=driving" target="_blank" class="map-btn">🗺️ 一鍵開啟 DAY 1 官方導航路線</a>
+            <div class="timeline-item">
+                <div class="time-tag">17:00 - 19:00</div>
+                <div class="item-title">新加坡河畔黃昏散步 ➔ 魚尾獅公園<span class="badge badge-walk">漫步 15m</span></div>
+                <div class="item-desc">順著駁船碼頭行人專用道慢步。此時晚風吹起，一邊欣賞歷史店屋與現代金融高樓的交錯夜景，一路散步至海濱捕捉國家級地標與金沙點燈。</div>
+            </div>
+            <div class="timeline-item highlight">
+                <div class="time-tag">19:15 - 20:30</div>
+                <div class="item-title">老巴剎沙爹街（Lau Pa Sat）｜露天大排檔<span class="badge badge-walk">步行 8m</span></div>
+                <div class="item-desc">自魚尾獅公園散步深入金融區。夜晚封鎖的馬路中央擺滿炭火烤爐，在高樓大廈包圍下享受碳香沙爹串與冰啤酒，體驗最道地的戶外夜生活。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">20:30 - 20:45</div>
+                <div class="item-title">老巴剎 ➔ 飯店休息<span class="badge badge-mrt">公車 7m</span></div>
+                <div class="item-desc"><strong>【大眾運輸小於30分流】</strong>車程僅 7 分鐘。老巴剎門口直接搭乘 **147 號公車**，坐 2 站直達飯店正門口，消滅不必要的步行。</div>
+                <div class="map-indicator">📍 <span>今日範圍：</span> 新加坡河岸帶狀區，無拉車損耗</div>
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&origin=Changi+Airport+Terminal+1&destination=Park+Regis+Singapore&waypoints=Park+Regis+Singapore%7CMerlion+Park%7CLau+Pa+Sat" target="_blank" class="map-btn">🗺️ 一鍵開啟 DAY 1 官方原生導航</a>
         </div>
 
         <div id="day2" class="day-panel">
-            <div class="timeline-item highlight">
+            <div class="timeline-item">
+                <div class="time-tag">09:30 - 10:30</div>
+                <div class="item-title">The Community Coffee ➔ 麥士威熟食中心<span class="badge badge-mrt">公車 3m + 步行 5m</span></div>
+                <div class="item-desc"><strong>【大眾運輸流】</strong>車程 3 分鐘。飯店對面搭 **186 號公車** 2 站直達遠東廣場，品嚐拒絕香精的產地單品淺焙咖啡；隨後慢步 5 分鐘進入麥士威熟食中心。</div>
+            </div>
+            <div class="timeline-item">
                 <div class="time-tag">10:45 - 11:30</div>
-                <div class="item-title">天天海南雞飯 (麥士威)<span class="badge badge-mrt">地鐵 2 站</span></div>
-                <div class="item-desc">克拉碼頭站搭紫線 1 站到歐南園，轉棕線 1 站到麥士威站。出站直接進冷氣熟食中心。</div>
-                <div class="map-indicator">📍 <span>移動範圍：</span> 自飯店往南平移 1.5 公里（牛車水邊緣）</div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-tag">11:45 - 13:45</div>
-                <div class="item-title">甘榜格南（哈芝巷 & 香水店）<span class="badge badge-grab">Grab/公車</span></div>
-                <div class="item-desc">熟食中心門口搭 80 號公車 12 分鐘直達武吉士（Bugis）旁的阿拉街。</div>
-                <div class="map-indicator">📍 <span>移動範圍：</span> 從南部大跨步往東北方的武吉士區移動（約 3.5 公里）</div>
+                <div class="item-title">天天海南雞飯 閃擊戰</div>
+                <div class="item-desc">直攻剛開門第一波、閹雞黃油香氣滿溢的天天海南雞。飽餐後在正午暴熱人潮湧現前迅速撤退。</div>
             </div>
             <div class="timeline-item highlight">
-                <div class="time-tag">14:15 - 19:45</div>
-                <div class="item-title">濱海灣花園雙溫室（冷氣避暑）<span class="badge badge-grab">Grab 6m</span></div>
-                <div class="item-desc">從哈芝巷口直接叫 Grab 跳過熱浪，6 分鐘閃進冷氣溫室。晚上看 19:45 超級樹燈光秀。</div>
-                <div class="map-indicator">📍 <span>移動範圍：</span> 從武吉士南下至東南填海區的濱海灣花園（約 2.8 公里）</div>
+                <div class="time-tag">11:45 - 14:30</div>
+                <div class="item-title">麥士威 ➔ 如切路彩色娘惹店屋（坤成路）<span class="badge badge-grab">Grab 15m</span></div>
+                <div class="item-desc"><strong>【大眾運輸破防改搭 Grab】</strong>此段大眾運輸需 35 分鐘（已破線）。果斷由 Grab 接駁，15 分鐘冷氣吹飽直達東部。近距離漫步拍攝全星最美的粉彩巴洛克店屋，尋寶金珠肉粽與在地職人選物小店。</div>
             </div>
             <div class="timeline-item">
-                <div class="time-tag">20:30 - 22:30</div>
-                <div class="item-title">Violet Oon 奢華娘惹晚宴<span class="badge badge-grab">Grab 5m</span></div>
-                <div class="item-desc">散步離開超級樹，Grab 直奔國家美術館。完食後 Grab 5 分鐘送回克拉碼頭飯店。</div>
-                <div class="map-indicator">📍 <span>總結：</span> 今日是包圍濱海灣的大型環狀移動，午後至夜間全靠 Grab 無縫對接</div>
+                <div class="time-tag">14:45 - 19:45</div>
+                <div class="item-title">如切路 ➔ 濱海灣花園雙溫室 & 超級樹<span class="badge badge-grab">Grab 12m</span></div>
+                <div class="item-desc"><strong>【大眾運輸破防改搭 Grab】</strong>此段大眾運輸需 32 分鐘（已破線）。直接 Grab 12 分鐘閃進雲霧林冷氣防線蒸發午後熱浪。19:45 準時躺在草皮欣賞超級樹魔幻燈光秀。</div>
             </div>
-            <a href="https://www.google.com/maps/dir/?api=1&origin=Park+Regis+Singapore&destination=Park+Regis+Singapore&waypoints=Tian+Tian+Hainanese+Chicken+Rice|Haji+Lane|Gardens+by+the+Bay|National+Kitchen+by+Violet+Oon&travelmode=driving" target="_blank" class="map-btn">🗺️ 一鍵開啟 DAY 2 官方導航路線</a>
+            <div class="timeline-item highlight">
+                <div class="time-tag">20:15 - 22:30</div>
+                <div class="item-title">濱海灣 ➔ Violet Oon 奢華娘惹宴 ➔ 飯店<span class="badge badge-mrt">公車 12m + 公車 5m</span></div>
+                <div class="item-desc"><strong>【大眾運輸流】</strong>車程僅 12 分鐘。金沙門口搭 **133 號公車** 直達國家美術館，在黑金殖民美學中享受頂級娘惹晚宴。完食後搭 **147 號公車** 5 分鐘直達飯店。</div>
+                <div class="map-indicator">📍 <span>今日範圍：</span> 牛車水 ➔ 東部如切路 ➔ 濱海灣環狀移動</div>
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&origin=Park+Regis+Singapore&destination=Park+Regis+Singapore&waypoints=The+Community+Coffee%7CMaxwell+Food+Centre%7CKoon+Seng+Road%7CGardens+by+the+Bay%7CNational+Kitchen+by+Violet+Oon" target="_blank" class="map-btn">🗺️ 一鍵開啟 DAY 2 官方原生導航</a>
         </div>
 
         <div id="day3" class="day-panel">
+            <div class="timeline-item">
+                <div class="time-tag">09:00 - 10:15</div>
+                <div class="item-title">對面商場亞坤老派朝食<span class="badge badge-walk">步行 2m</span></div>
+                <div class="item-desc">睡到自然醒。過飯店大門天橋進入對面 Clarke Quay Central 商場 B1，爽吃生熟蛋、咖椰吐司配熱茶。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">10:30 - 11:30</div>
+                <div class="item-title">福康寧公園綠色隧道（樹洞階梯）<span class="badge badge-walk">步行 6m</span></div>
+                <div class="item-desc">從飯店後方過河直達公園。清晨斜射光穿透巨木最適合拍綠色隧道大片。隨後在佈滿古蹟的小山丘上慢步至福康寧地鐵站。</div>
+            </div>
             <div class="timeline-item highlight">
-                <div class="time-tag">09:00 - 10:30</div>
-                <div class="item-title">對面商場亞坤椰咖吐司<span class="badge badge-walk">步行 2m</span></div>
-                <div class="item-desc">走飯店大門的天橋跨越馬路，直接進對面 Clarke Quay Central 商場 B1 吹冷氣爽吃。</div>
-                <div class="map-indicator">📍 <span>移動範圍：</span> 飯店正對面商場</div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-tag">11:00 - 11:30</div>
-                <div class="item-title">萊佛士酒店古蹟拱廊<span class="badge badge-walk">公車 7m</span></div>
-                <div class="item-desc">商場門口搭 190 號公車，4 站直達 City Hall 核心古蹟區。</div>
-                <div class="map-indicator">📍 <span>移動範圍：</span> 往正北方跨過新加坡河，平移 1.2 公里至市政區</div>
-            </div>
-            <div class="timeline-item">
                 <div class="time-tag">11:45 - 13:30</div>
-                <div class="item-title">Samy's Curry（登布西山）<span class="badge badge-grab">Grab 10m</span></div>
-                <div class="item-desc">古蹟巡禮完，直接叫 Grab 直奔隱密翠綠的舊英國軍營山丘。</div>
-                <div class="map-indicator">📍 <span>移動範圍：</span> 從市中心一路向西大跨步平移 5 公里至富人綠化區</div>
+                <div class="item-title">福康寧 ➔ 小印度【阿波羅香蕉葉傳奇咖哩】<span class="badge badge-mrt">捷運 6m</span></div>
+                <div class="item-desc"><strong>【大眾運輸流】</strong>車程僅 6 分鐘。藍線地鐵免轉乘直達 3 站到「小印度站」，C 出口出站走 2 分鐘空降冷氣房。完美取代遙遠的登布西山，大啖最正宗始祖級香蕉葉飯與經典咖哩魚頭。</div>
             </div>
             <div class="timeline-item highlight">
-                <div class="time-tag">13:45 - 17:45</div>
-                <div class="item-title">烏節路全冷氣商圈（徹底留白）<span class="badge badge-grab">Grab 6m</span></div>
-                <div class="item-desc">從登布西山滑下山，直接進義安城高島屋。走地下冷氣街漫步至翡翠山老街。無時間壓力。</div>
-                <div class="map-indicator">📍 <span>移動範圍：</span> 登布西山向東折返 2.5 公里，鎖定烏節路帶狀商圈</div>
+                <div class="time-tag">13:45 - 17:30</div>
+                <div class="item-title">小印度 ➔ 甘榜格南（哈芝巷壁畫街）<span class="badge badge-mrt">捷運 4m</span></div>
+                <div class="item-desc"><strong>【大眾運輸流】</strong>車程僅 4 分鐘。續搭藍線地鐵直達 2 站到「武吉士站」。出站即是甘榜格南核心。漫步哈芝巷巨幅塗鴉牆，尋寶獨立選物店並在 Jamal Kazura 入手阿拉伯無酒精純精油香水。</div>
             </div>
             <div class="timeline-item">
-                <div class="time-tag">18:00 - 20:00</div>
-                <div class="item-title">新烏敏海鮮（讚美廣場店）<span class="badge badge-grab">Grab/公車</span></div>
-                <div class="item-desc">烏節路 ION 搭公車或捷運直接拉回 City Hall 讚美廣場。完食後搭公車 5 分鐘回飯店。</div>
-                <div class="map-indicator">📍 <span>總結：</span> 今日是「一路向西再折返」的橫向大移動，成功突襲登布西山與烏節路</div>
+                <div class="time-tag">17:45 - 20:00</div>
+                <div class="item-title">甘榜格南 ➔ 新烏敏海鮮（讚美廣場店）➔ 飯店<span class="badge badge-mrt">公車 5m + 公車 5m</span></div>
+                <div class="item-desc"><strong>【大眾運輸流】</strong>車程 5 分鐘。巷口搭 **7 號或 145 號公車** 2 站直達讚美廣場。在百年哥德式古蹟中庭旁大口塞安格斯肋眼牛排與經典牛油炒飯。完食後搭公車 5 分鐘無痛回飯店。</div>
+                <div class="map-indicator">📍 <span>今日範圍：</span> 藍線捷運流，串聯福康寧、小印度與市政區</div>
             </div>
-            <a href="https://www.google.com/maps/dir/?api=1&origin=Park+Regis+Singapore&destination=Park+Regis+Singapore&waypoints=Raffles+Hotel+Singapore|Samy's+Curry|Takashimaya+Shopping+Centre|New+Ubin+Seafood+CHIJMES&travelmode=driving" target="_blank" class="google-map-btn map-btn">🗺️ 一鍵開啟 DAY 3 官方導航路線</a>
+            <a href="https://www.google.com/maps/dir/?api=1&origin=Park+Regis+Singapore&destination=Park+Regis+Singapore&waypoints=Clarke+Quay+Central%7CFort+Canning+Tree+Tunnel%7CThe+Banana+Leaf+Apolo%7CHaji+Lane%7CHIJMES" target="_blank" class="map-btn">🗺️ 一鍵開啟 DAY 3 官方原生導航</a>
         </div>
 
         <div id="day4" class="day-panel">
-            <div class="timeline-item">
-                <div class="time-tag">11:00 - 12:00</div>
-                <div class="item-title">飯店退房 ➔ 星耀樟宜<span class="badge badge-grab">Grab 25m</span></div>
-                <div class="item-desc">悠閒睡飽退房，直接在大廳上 Grab，冷氣吹飽直達樟宜機場。</div>
-                <div class="map-indicator">📍 <span>移動範圍：</span> 市中心克拉碼頭 ➔ 橫跨整座島嶼至最東端機場</div>
+            <div class="timeline-item highlight">
+                <div class="time-tag">09:35 - 10:00</div>
+                <div class="item-title">飯店退房 ➔ 星耀樟宜（Jewel）<span class="badge badge-grab">Grab 25m</span></div>
+                <div class="item-desc"><strong>【倒推時間線大戰略】</strong> 為了在 14:00 起飛前確保完整 3 小時待在 Jewel，上午 09:35 必須在大廳搭上 Grab，避開地鐵 52 分鐘的拉車損耗，25 分鐘直接殺到機場第一航廈。</div>
             </div>
             <div class="timeline-item highlight">
-                <div class="time-tag">12:00 - 15:00</div>
-                <div class="item-title">星耀樟宜 Jewel 盲盒放空 ➔ 登機</div>
-                <div class="item-desc">託運完行李，直接在 Jewel 巨型瀑布冷氣大廳內放空、吃 B2 美食、買伴手禮。14:45 準時登機返台。</div>
-                <div class="map-indicator">📍 <span>總結：</span> 今日戰力全部保留在樟宜機場室內，完全與地表毒辣陽光絕緣</div>
+                <div class="time-tag">10:00 - 13:00</div>
+                <div class="item-title">【精準鎖定 3 小時】星耀樟宜 Jewel 黃金放空圈</div>
+                <div class="item-desc">10:00 抵達後直接前往櫃檯辦理早鳥託運。接下來進入整整 180 分鐘毫無壓力的放空行程：在大瀑布前拍無人空景合照、品嚐 Birds of Paradise 白菊花冰淇淋、去 Bengawan Solo 帶上最鮮的斑蘭戚風蛋糕與鐵盒手信。</div>
+                <div class="map-indicator">📍 <span>時間精算：</span> 10:00 - 13:00 完美填滿 3 小時，不縮水、不趕時間</div>
             </div>
-            <a href="https://www.google.com/maps/dir/?api=1&origin=Park+Regis+Singapore&destination=Jewel+Changi+Airport&travelmode=driving" target="_blank" class="map-btn">🗺️ 一鍵開啟 DAY 4 機場導航</a>
-        </div>
-
-        <div class="strategy-box">
-            <h4>💡 30天前線上搶位戰略（台灣時間跨日搶）</h4>
-            <ul>
-                <li><strong>7月21日：</strong> 搶 8/21 (D2) 20:30 National Kitchen by Violet Oon</li>
-                <li><strong>7月23日：</strong> 搶 8/22 (D3) 18:00 新烏敏海鮮（讚美廣場店）</li>
-                <li>* 第一天下午餐完全留白免預約，保留開局最高鬆弛度。</li>
-            </ul>
+            <div class="timeline-item">
+                <div class="time-tag">13:00 - 13:20</div>
+                <div class="item-title">自動出境通關 ➔ 抵達登機門</div>
+                <div class="item-desc">13:00 準時刷護照通關、過安檢，優雅步行至登機門。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">13:20 - 14:00</div>
+                <div class="item-title">13:20 開始登機 ➔ 14:00 星宇航空正式起飛</div>
+                <div class="item-desc">準時登機，帶著戰利品（還有從 Agoda 討回來的 800 元匯差加菜金）滿載返台！</div>
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&origin=Park+Regis+Singapore&destination=Jewel+Changi+Airport" target="_blank" class="map-btn">🗺️ 一鍵開啟 DAY 4 機場導航</a>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 蔡氏夫妻新加坡優雅快閃專案 ｜ 祝旅途愉快</p>
+        <p>© 2026 蔡氏夫妻新加坡大眾運輸精算與慢遊專案 ｜ 祝旅途愉快</p>
     </footer>
 </body>
 </html>
